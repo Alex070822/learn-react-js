@@ -15,22 +15,22 @@ nav {
   padding: 30px 25px;
 }
 
-body, .mainTitle, .navLogoText, .navTitle {
+body, .main__title, .nav__logo-text, .nav__title {
   margin: 0;
 }
 
-.navLogoText {
+.nav__logo-text {
   margin-right: auto;
   font-weight: 700;
   font-size: 22px;
 }
 
-.navTitle {
+.nav__title {
   color: #DEEBF8;
   font-weight: 600;
 }
 
-.navIcon {
+.nav__icon {
   height: 30px;
   margin-right: 7px;
 }
@@ -43,25 +43,25 @@ main {
   background-position: right 75%;
 }
 
-.mainTitle {
+.main__title {
   font-size: 39px;
   letter-spacing: -0.05em;
 }
 
-.mainFacts {
+.main__facts {
   margin-top: 46px;
   max-width: 400px;
 }
 
-.mainFacts > li {
+.main__facts > li {
   line-height: 19px;
   padding-block: 10px;
 }
 
-.mainFacts > li::marker {
+.main__facts > li::marker {
   font-size: 1.4rem;
 }
 
-.mainFacts > li::marker, .navLogoText {
+.main__facts > li::marker, .nav__logo-text {
   color: #61DAFB;
 }

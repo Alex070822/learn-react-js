@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  background-color: #23252C;
+}
+
+button {
+  background-color: #FFFFFF;
+  color: #374151;
+  width: 247px;
+  height: 34px;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 16px;
+  border: 1px solid #D1D5DB;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+
+footer {
+  column-gap: 24px;
+  justify-content: center;
+  align-items: center;
+  background-color: #161619;
+  border-radius: 0 0 10px 10px;
+  height: 64px;
+}
+
+footer > img {
+  height: 25px;
+}
+
+footer, .root__container {
+  display: flex;
+}
+
+h1 {
+  color: #FFFFFF;
+  font-size: 25px;
+  margin-top: 21px;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+h3 {
+  color: #F3BF99;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+h4 {
+  font-size: 10px;
+  margin-top: 9px;
+}
+
+h2, h4{
+  color: #F5F5F5;
+}
+
+h3, h4 {
+  font-weight: 400;
+}
+
+main {
+  background-color: #1A1B21;
+}
+
+p {
+  color: #DCDCDC;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+p:last-child {
+  margin-bottom: 24px;
+}
+
+p, .about, .interests{
+  text-align: left;
+  margin-left: 35px;
+  margin-right: 35px;
+}
+
+.about {
+  margin-top: 32px;
+}
+
+.interests {
+  margin-top: 27px;
+}
+
+.profilePic {
+  height: 317px;
+  margin-top: 44px;
+  border-radius: 10px 10px 0 0;
+}
+
+.root__container {
+  flex-flow: column wrap;
+  text-align: center;
+  margin: auto;
+  width: 317px;
+}
+

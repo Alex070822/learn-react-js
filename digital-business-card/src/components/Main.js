@@ -6,7 +6,9 @@ function Main() {
       <h1>Alexis González</h1>
       <h3>Frontend Developer</h3>
       <h4>alexisgonzalez.website</h4>
-      <button>✉ Email</button>
+      <button>
+        <img src={require("../media/icon.png")} alt="Email icon" /> Email
+      </button>
       <h2 className="about">About</h2>
       <p>
         I am a frontend developer who loves minimalist and functional designs,

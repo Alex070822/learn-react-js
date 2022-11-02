@@ -1,10 +1,13 @@
 import "../App.css"
-import profilePic from "../media/profile-pic.png"
 
 function ProfilePic() {
   return (
     <>
-      <img src={profilePic} alt="Profile" className="profilePic" />
+      <img
+        src={require("../media/profile-pic.png")}
+        alt="Profile"
+        className="profilePic"
+      />
     </>
   )
 }

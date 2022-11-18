@@ -50,7 +50,7 @@ main {
   border-radius: 15px;
 }
 
-.instructions, button, .answer {
+.instructions, button, .answer-button {
   font-family: 'Inter', sans-serif;
 }
 
@@ -76,13 +76,23 @@ main {
   margin-bottom: 15px;
 }
 
-.answer {
+.answer-button {
+
+}
+
+.answer-label {
+  font-family: 'Inter', sans-serif;
   font-size: 10px;
   color: #293264;
   background-color: transparent;
+  padding: 1px 6px;
   border: 1px solid #4D5B9E;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.answer-button:checked ~ label {
+  background-color: red;
 }
 
 .question-divider {

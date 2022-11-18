@@ -9,13 +9,27 @@ function Quiz(props) {
           <>
             <h2 className="question">{question.question}</h2>
             <div className="answer-container">
-              <button className="answer">{question.correct_answer}</button>
-              <input type="radio" name="answer" />
+              <input
+                type="radio"
+                id="correct-answer"
+                name="answer"
+                className="answer-button"
+              />
+              <label htmlFor="correct-answer" className="answer-label">
+                {question.correct_answer}
+              </label>
               {question.incorrect_answers.map((options) => {
                 return (
                   <>
-                    <button className="answer">{options}</button>
-                    <input type="radio" name="answer" />
+                    <input
+                      type="radio"
+                      id="incorrect-answer"
+                      name="answer"
+                      className="answer-button"
+                    />
+                    <label htmlFor="incorrect-answer" className="answer-label">
+                      {options}
+                    </label>
                   </>
                 );
               })}

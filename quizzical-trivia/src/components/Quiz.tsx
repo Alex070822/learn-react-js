@@ -1,46 +1,56 @@
-import { useState } from "react";
+import { FC } from "react";
+import { AnswerItem } from "../App";
 
-function Quiz(props) {
-  const [quizData, setQuizData] = useState({ isSelected: "" });
+interface QuestionProps {
+  key: string;
+  title: string;
+  answers: AnswerItem[];
+  correctAnswer: string;
+  isVerifyingAnswers: boolean;
+}
+
+const Quiz: FC<QuestionProps> = ({
+  title,
+  answers,
+  correctAnswer,
+  isVerifyingAnswers,
+}) => {
   return (
     <div className="quiz">
-      {props.quiz.map((question) => {
-        return (
-          <>
-            <h2 className="question">{question.question}</h2>
-            <div className="answer-container">
+      <div className="question">{title}</div>
+      <div className="answers">
+        {answers.map(({ id: answerId, answer }) => {
+          return (
+            <div className="radio-btn" key={answerId}>
               <input
+                className={
+                  isVerifyingAnswers && answer === correctAnswer
+                    ? "correct-answer-style"
+                    : isVerifyingAnswers && answer !== correctAnswer
+                    ? "incorrect-answer-style"
+                    : "default-answer-style"
+                }
                 type="radio"
-                id="correct-answer"
-                name="answer"
-                className="answer-button"
+                id="answer"
+                name={title}
               />
-              <label htmlFor="correct-answer" className="answer-label">
-                {question.correct_answer}
+              <label
+                className={
+                  isVerifyingAnswers && answer === correctAnswer
+                    ? "correct-answer-style"
+                    : "default-answer-style"
+                }
+                htmlFor="answer"
+              >
+                {answer}
               </label>
-              {question.incorrect_answers.map((options) => {
-                return (
-                  <>
-                    <input
-                      type="radio"
-                      id="incorrect-answer"
-                      name="answer"
-                      className="answer-button"
-                    />
-                    <label htmlFor="incorrect-answer" className="answer-label">
-                      {options}
-                    </label>
-                  </>
-                );
-              })}
             </div>
-            <hr className="question-divider" />
-          </>
-        );
-      })}
-      <button className="check-answers">Check answers</button>
+          );
+        })}
+      </div>
+      <hr className="question-divider" />
     </div>
   );
-}
+};
 
 export default Quiz;

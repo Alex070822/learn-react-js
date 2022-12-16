@@ -15,6 +15,7 @@ body {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   position: absolute;
   top: 50%;
@@ -42,7 +43,11 @@ main {
   font-weight: 400;
 }
 
-.start-quiz {
+button:hover {
+  opacity: 0.8;
+}
+
+.start-btn {
   font-size: 16px;
   font-weight: 500;
   width: 193px;
@@ -50,15 +55,8 @@ main {
   border-radius: 15px;
 }
 
-.instructions, button, .answer-button {
+.instructions, button {
   font-family: 'Inter', sans-serif;
-}
-
-.quiz {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: center;
 }
 
 .question {
@@ -68,7 +66,7 @@ main {
   margin-bottom: 16px;
 }
 
-.answer-container {
+.answers {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -76,23 +74,54 @@ main {
   margin-bottom: 15px;
 }
 
-.answer-button {
-
+.radio-btn {
+  position: relative;
+  text-align: center;
 }
 
-.answer-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  color: #293264;
-  background-color: transparent;
-  padding: 1px 6px;
+.radio-btn label {
+  font-size: 11px;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  display: block;
   border: 1px solid #4D5B9E;
   border-radius: 8px;
-  cursor: pointer;
+  padding: 4px 12px;
+  pointer-events: none;
 }
 
-.answer-button:checked ~ label {
-  background-color: red;
+input[type="radio"] {
+  position: absolute;
+  cursor: pointer;
+  height: 100%;
+  margin-top: -1px;
+  vertical-align: middle;
+  transform: scale(3);
+  opacity: 0;
+}
+
+input[type="radio"]:hover + label{
+  background: #D6D8F5;
+}
+
+.default-answer-style:checked + label {
+  background: #D6D8F5;
+}
+
+.asd {
+  background: black;
+}
+
+.correct-answer-style {
+  background: #94D7A2;
+}
+
+.correct-answer-style:checked + label {
+  background: #94D7A2;
+}
+
+.incorrect-answer-style:checked + label {
+  background: #F8BCBC;
 }
 
 .question-divider {
@@ -102,10 +131,10 @@ main {
 }
 
 .quiz, .question-divider {
-  width: 500px;
+  width: 600px;
 }
 
-.check-answers {
+.check-answers-btn {
   margin-top: 5px;
   align-self: center;
   font-size: 10px;
@@ -115,7 +144,7 @@ main {
   border-radius: 10px;
 }
 
-.start-quiz, .check-answers {
+.start-btn, .check-answers-btn {
   color: #F5F7FB;
   background-color: #4D5B9E;
   border-style: none;

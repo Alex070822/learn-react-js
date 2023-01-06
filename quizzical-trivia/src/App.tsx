@@ -22,6 +22,7 @@ interface QuestionItem {
   question: string;
   answers: AnswerItem[];
   correctAnswer: string;
+  selectedAnswer?: string;
 }
 
 export interface AnswerItem {
@@ -49,6 +50,47 @@ const App: FC = () => {
     setQuestions(questionItems);
   };
 
+  const setSelectedAnswer = (selectedAnswerId: string) => {
+    setQuestions((currentQuestions) => {
+      // new state
+      const newQuestions: QuestionItem[] = [];
+
+      // iterate every question to find for the answer selected
+      currentQuestions.forEach((question) => {
+        // find the selected answer
+        const answerItemFound = question.answers.find(
+          (answer) => answer.id === selectedAnswerId
+        );
+
+        // if found
+        if (answerItemFound) {
+          // update the selected answer for the corresponding question
+          newQuestions.push({
+            ...question,
+            selectedAnswer: answerItemFound.answer,
+          });
+        } else {
+          // if not found
+          // leave the previous content as it was in the past
+          newQuestions.push(question);
+        }
+      });
+
+      return newQuestions;
+    });
+  };
+
+  const getCorrectAnswersCount = () => {
+    let count = 0;
+
+    questions.forEach((question) => {
+      count =
+        question.selectedAnswer === question.correctAnswer ? count + 1 : count;
+    });
+
+    return count;
+  };
+
   return (
     <main>
       {questions.map((question) => (
@@ -56,18 +98,40 @@ const App: FC = () => {
           key={question.id}
           title={question.question}
           answers={question.answers}
-          correctAnswer={question.correctAnswer}
+          setSelectedAnswer={setSelectedAnswer}
+          selectedAnswer={question.selectedAnswer}
           isVerifyingAnswers={isVerifyingAnswers}
+          correctAnswer={question.correctAnswer}
         />
       ))}
-      <button
-        className="check-answers-btn"
-        onClick={() => {
-          setIsVerifyingAnswers(true);
-        }}
-      >
-        Check answers
-      </button>
+      {isVerifyingAnswers && (
+        <div className="score">
+          You scored {getCorrectAnswersCount()}/{questions.length} correct
+          answers
+        </div>
+      )}
+
+      {isVerifyingAnswers ? (
+        <button
+          onClick={() => {
+            setQuestions([]);
+            setIsVerifyingAnswers(false);
+            loadQuestions();
+          }}
+          className="check-answers-btn"
+        >
+          Play again
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            setIsVerifyingAnswers(true);
+          }}
+          className="check-answers-btn"
+        >
+          Check answers
+        </button>
+      )}
     </main>
   );
 };
@@ -89,6 +153,7 @@ function mapResultToQuestionItem(result: Result): QuestionItem {
       },
     ].sort(() => Math.random() - 0.5),
     correctAnswer: decodeString(result.correct_answer),
+    selectedAnswer: undefined,
   };
 }
 

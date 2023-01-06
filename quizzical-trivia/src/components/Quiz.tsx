@@ -2,52 +2,60 @@ import { FC } from "react";
 import { AnswerItem } from "../App";
 
 interface QuestionProps {
-  key: string;
   title: string;
   answers: AnswerItem[];
-  correctAnswer: string;
+  setSelectedAnswer: (answerId: string) => void;
+  selectedAnswer?: string;
   isVerifyingAnswers: boolean;
+  correctAnswer: string;
 }
 
 const Quiz: FC<QuestionProps> = ({
   title,
   answers,
-  correctAnswer,
+  setSelectedAnswer,
+  selectedAnswer,
   isVerifyingAnswers,
+  correctAnswer,
 }) => {
+  const selectionAnswerStyle = !isVerifyingAnswers ? "answer-selection" : "";
+
   return (
     <div className="quiz">
       <div className="question">{title}</div>
       <div className="answers">
         {answers.map(({ id: answerId, answer }) => {
+          const correctAnswerStyle =
+            isVerifyingAnswers && answer === correctAnswer
+              ? "correct-answer"
+              : "";
+
           return (
-            <div className="radio-btn" key={answerId}>
-              <input
-                className={
-                  isVerifyingAnswers && answer === correctAnswer
-                    ? "correct-answer-style"
-                    : isVerifyingAnswers && answer !== correctAnswer
-                    ? "incorrect-answer-style"
-                    : "default-answer-style"
+            <button
+              key={answerId}
+              className={
+                selectedAnswer === answer
+                  ? `answer-btn selected-answer ${correctAnswerStyle} ${selectionAnswerStyle}`
+                  : `answer-btn ${correctAnswerStyle} ${selectionAnswerStyle}`
+              }
+              onClick={() => {
+                if (!isVerifyingAnswers) {
+                  setSelectedAnswer(answerId);
                 }
-                type="radio"
-                id="answer"
-                name={title}
-              />
-              <label
-                className={
-                  isVerifyingAnswers && answer === correctAnswer
-                    ? "correct-answer-style"
-                    : "default-answer-style"
-                }
-                htmlFor="answer"
-              >
-                {answer}
-              </label>
-            </div>
+              }}
+            >
+              {answer}
+            </button>
           );
         })}
       </div>
+      {isVerifyingAnswers && selectedAnswer === correctAnswer && (
+        <p className="correct-answer-msg">Your answer was correct</p>
+      )}
+
+      {isVerifyingAnswers && selectedAnswer !== correctAnswer && (
+        <p className="incorrect-answer-msg">Your answer was incorrect</p>
+      )}
       <hr className="question-divider" />
     </div>
   );

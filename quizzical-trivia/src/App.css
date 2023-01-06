@@ -60,8 +60,6 @@ button:hover {
 }
 
 .question {
-  font-size: 16px;
-  font-weight: 700;
   text-align: left;
   margin-bottom: 16px;
 }
@@ -74,54 +72,48 @@ button:hover {
   margin-bottom: 15px;
 }
 
-.radio-btn {
-  position: relative;
-  text-align: center;
-}
-
-.radio-btn label {
-  font-size: 11px;
+.answer-btn {
   font-family: Inter, sans-serif;
+  font-size: 10px;
   font-weight: 500;
-  display: block;
+  color: #293264;
   border: 1px solid #4D5B9E;
   border-radius: 8px;
-  padding: 4px 12px;
-  pointer-events: none;
+  background: transparent;
+  padding: 4px 8px;
 }
 
-input[type="radio"] {
-  position: absolute;
+.answer-selection:hover {
+  background-color: #DBDEF0;
   cursor: pointer;
-  height: 100%;
-  margin-top: -1px;
-  vertical-align: middle;
-  transform: scale(3);
-  opacity: 0;
 }
 
-input[type="radio"]:hover + label{
-  background: #D6D8F5;
+.selected-answer {
+  background-color: #DBDEF0;
 }
 
-.default-answer-style:checked + label {
-  background: #D6D8F5;
+.correct-answer {
+  background-color: #94D7A2;
 }
 
-.asd {
-  background: black;
+.correct-answer-msg {
+  color: #94D7A2;
+  margin-bottom: 15px;
 }
 
-.correct-answer-style {
-  background: #94D7A2;
+.incorrect-answer-msg {
+  color: #F8BCBC;
+  margin-bottom: 15px;
 }
 
-.correct-answer-style:checked + label {
-  background: #94D7A2;
+.score {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.incorrect-answer-style:checked + label {
-  background: #F8BCBC;
+.question, .correct-answer-msg, .incorrect-answer-msg, .score {
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .question-divider {
